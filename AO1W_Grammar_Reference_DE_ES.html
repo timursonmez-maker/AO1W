@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AO1W — All On 1 Wall — Grammar Reference</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f1117;
+  --surface: #181b24;
+  --surface-2: #1e222d;
+  --surface-3: #252a37;
+  --border: #2a2f3d;
+  --border-light: #353b4d;
+  --text: #e8e6e3;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+  --accent-blue: #60a5fa;
+  --accent-green: #34d399;
+  --accent-amber: #fbbf24;
+  --accent-rose: #fb7185;
+  --accent-purple: #a78bfa;
+  --accent-orange: #fb923c;
+  --accent-cyan: #22d3ee;
+  --masc: #60a5fa;
+  --fem: #fb7185;
+  --neut: #34d399;
+  --plural: #fbbf24;
+  --nom: #60a5fa;
+  --acc: #fb923c;
+  --dat: #a78bfa;
+  --gen: #34d399;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* === HEADER === */
+.header {
+  text-align: center;
+  padding: 60px 40px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(96,165,250,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+.header h1 {
+  font-family: var(--font-display);
+  font-size: 48px;
+  letter-spacing: 0.02em;
+  margin-bottom: 4px;
+  position: relative;
+}
+.header h1 span { color: var(--accent-blue); }
+.header .subtitle {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+/* === LANGUAGE TABS === */
+.lang-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  padding: 0 20px 0;
+  position: relative;
+  z-index: 101;
+}
+.lang-tab {
+  padding: 14px 36px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-bottom: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 8px 8px 0 0;
+  position: relative;
+}
+.lang-tab:hover { color: var(--text-secondary); }
+.lang-tab.active {
+  color: var(--text);
+  background: var(--bg);
+  border-bottom: 1px solid var(--bg);
+  z-index: 2;
+}
+.lang-tab.active.de { border-top: 3px solid var(--accent-amber); }
+.lang-tab.active.es { border-top: 3px solid var(--accent-orange); }
+.lang-tab .flag { font-size: 18px; margin-right: 8px; }
+
+.tab-content-wrapper {
+  border-top: 1px solid var(--border);
+}
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* === NAV === */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(15,17,23,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 20px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.nav-inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  gap: 0;
+}
+.nav a {
+  display: inline-block;
+  padding: 12px 16px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+.nav a:hover { color: var(--text); border-bottom-color: var(--accent-blue); }
+
+/* === LAYOUT === */
+.main { max-width: 1600px; margin: 0 auto; padding: 0 20px; }
+
+/* === SECTIONS === */
+.section {
+  border-bottom: 1px solid var(--border);
+  padding: 48px 0;
+}
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 32px;
+  padding: 0 20px;
+}
+.section-num {
+  font-family: var(--font-display);
+  font-size: 36px;
+  color: var(--accent-blue);
+  opacity: 0.4;
+  line-height: 1;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: 28px;
+  line-height: 1.2;
+}
+.section-title-de, .section-title-es {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+/* === CONTENT BLOCKS === */
+.content { padding: 0 20px; }
+.subsection { margin-bottom: 36px; }
+.subsection-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.subsection-title .tag {
+  font-family: var(--font-body);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 2px 8px;
+  border-radius: 2px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+p { margin-bottom: 12px; max-width: 900px; }
+p.note {
+  font-size: 13px;
+  color: var(--text-secondary);
+  border-left: 2px solid var(--border-light);
+  padding-left: 12px;
+  margin: 16px 0;
+}
+
+.example {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 12px 16px;
+  margin: 12px 0;
+  font-size: 13px;
+}
+.example .de, .example .es { font-weight: 600; margin-bottom: 2px; }
+.example .en { color: var(--text-secondary); font-style: italic; }
+
+.gender-m { color: var(--masc); }
+.gender-f { color: var(--fem); }
+
+/* === TABLES === */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin: 16px 0;
+}
+th, td {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+th {
+  background: var(--surface);
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+}
+td { background: var(--surface-2); }
+tr:hover td { background: var(--surface-3); }
+table.compact td, table.compact th { padding: 5px 10px; font-size: 12px; }
+
+.table-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+th.m { border-top: 3px solid var(--masc); }
+th.f { border-top: 3px solid var(--fem); }
+th.n { border-top: 3px solid var(--neut); }
+th.pl { border-top: 3px solid var(--plural); }
+
+/* === INTRO TEXT BLOCK === */
+.intro-text {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 32px;
+  margin: 32px 20px;
+  position: relative;
+}
+.intro-text .bilingual {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.intro-text .en-col { line-height: 1.8; font-size: 14px; }
+.intro-text .de-col, .intro-text .es-col { line-height: 1.8; font-size: 14px; color: var(--text-secondary); }
+
+/* === LEGEND === */
+.legend {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding: 16px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin: 20px;
+  font-size: 12px;
+}
+.legend-item { display: flex; align-items: center; gap: 6px; }
+.legend-dot { width: 10px; height: 10px; border-radius: 2px; }
+
+/* === CASE / MOOD CARDS === */
+.case-cards, .mood-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 20px 0;
+}
+.mood-cards { grid-template-columns: repeat(3, 1fr); }
+.case-card, .mood-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 16px;
+  border-top: 3px solid;
+}
+.case-card h4, .mood-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+.case-card .question, .mood-card .question { font-size: 12px; color: var(--text-secondary); margin-bottom: 8px; }
+.case-card p, .mood-card p { font-size: 12px; margin-bottom: 8px; }
+
+/* === COLUMNS === */
+.cols-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.cols-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+
+/* Rule boxes */
+.rule-box {
+  background: var(--surface);
+  border: 1px solid var(--accent-blue);
+  border-left: 3px solid var(--accent-blue);
+  border-radius: 0 4px 4px 0;
+  padding: 12px 16px;
+  margin: 12px 0;
+  font-size: 13px;
+}
+.rule-box.amber { border-color: var(--accent-amber); }
+.rule-box.green { border-color: var(--accent-green); }
+.rule-box.rose { border-color: var(--accent-rose); }
+.rule-box.orange { border-color: var(--accent-orange); }
+.rule-box strong { color: var(--accent-blue); }
+.rule-box.amber strong { color: var(--accent-amber); }
+.rule-box.green strong { color: var(--accent-green); }
+.rule-box.rose strong { color: var(--accent-rose); }
+.rule-box.orange strong { color: var(--accent-orange); }
+
+/* Rule list */
+.rule-list { list-style: none; }
+.rule-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 12px;
+}
+.rule-list li:last-child { border-bottom: none; }
+.rule-list .num {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent-blue);
+  flex-shrink: 0;
+  width: 24px;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-muted);
+  font-size: 12px;
+  border-top: 1px solid var(--border);
+}
+
+/* === PRINT === */
+@media print {
+  body { background: #fff; color: #111; font-size: 10px; }
+  .nav, .lang-tabs { display: none; }
+  .section { break-inside: avoid; padding: 24px 0; }
+  th { background: #f0f0f0; }
+  td { background: #fff; }
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 900px) {
+  .cols-2, .cols-3, .case-cards, .mood-cards { grid-template-columns: 1fr; }
+  .intro-text .bilingual { grid-template-columns: 1fr; }
+  .header h1 { font-size: 32px; }
+  .lang-tab { padding: 12px 20px; font-size: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ==================== HEADER ==================== -->
+<div class="header">
+  <h1>A<span>O</span>1W</h1>
+  <div class="subtitle">All On One Wall &mdash; Grammar Reference for English Speakers</div>
+  <div class="lang-tabs">
+    <div class="lang-tab de active" onclick="switchTab('de')"><span class="flag">🇩🇪</span> German</div>
+    <div class="lang-tab es" onclick="switchTab('es')"><span class="flag">🇪🇸</span> Spanish</div>
+  </div>
+</div>
+
+<div class="tab-content-wrapper">
+
+<!-- ============================================================ -->
+<!-- ====================== GERMAN TAB ========================== -->
+<!-- ============================================================ -->
+<div class="tab-content active" id="tab-de">
+
+<div class="nav" id="nav-de">
+  <div class="nav-inner">
+    <a href="#de-intro">Intro</a>
+    <a href="#de-cases">Cases</a>
+    <a href="#de-nouns">I. Nouns</a>
+    <a href="#de-articles">II. Articles</a>
+    <a href="#de-adjectives">III. Adjectives</a>
+    <a href="#de-pronouns">IV. Pronouns</a>
+    <a href="#de-particles">V. Particles</a>
+    <a href="#de-verbs">VI. Verbs</a>
+    <a href="#de-prepositions">VII. Prepositions</a>
+    <a href="#de-conjunctions">VIII. Conjunctions</a>
+    <a href="#de-adverbs">IX. Adverbs</a>
+    <a href="#de-word-order">Word Order</a>
+    <a href="#de-tenses">Tenses &amp; Moods</a>
+    <a href="#de-passive">Passive Voice</a>
+  </div>
+</div>
+
+<div class="main">
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--masc)"></div> Masculine (der)</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--fem)"></div> Feminine (die)</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--neut)"></div> Neuter (das)</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--plural)"></div> Plural (die)</div>
+</div>
+
+<!-- DE INTRO -->
+<div class="section" id="de-intro">
+  <div class="section-header"><div class="section-title">Introduction</div></div>
+  <div class="intro-text">
+    <div class="bilingual">
+      <div class="en-col">
+        <p>I once met a smart, hardworking student who prophesied that I would one day speak German like a native. In order to do this, he told me, there are four crucial rules that must be mastered.</p>
+        <p><strong>First,</strong> don't expect to be perfect. Language learning is a process that rewards consistency and the willingness to make mistakes.</p>
+        <p><strong>Second,</strong> supplement your theory with real-world practice. Live in Germany. Immerse yourself in German literature, music and art. Or better yet, just practise German out loud to yourself.</p>
+        <p><strong>Third,</strong> add new words to your vocabulary each day with the use of flashcards and vocabulary lists, or simply by labelling your surroundings at home.</p>
+        <p><strong>Finally</strong> and most importantly, try to figure out what the greater purpose of your language learning is. Whatever the reason, don't lose sight of the goal. Appreciate the value of small victories, and you will realise not only that the prophecy was correct, but also that you too were a smart student who once foresaw the future.</p>
+      </div>
+      <div class="de-col">
+        <p>Ich traf einmal einen klugen, hartarbeitenden Studenten, der prophezeite, dass ich eines Tages Deutsch wie ein Muttersprachler sprechen würde. Um dies zu tun, sagte er mir, gebe es vier entscheidende Regeln, die gemeistert werden müssen.</p>
+        <p><strong>Erstens,</strong> erwarte nicht, perfekt zu sein. Sprachenlernen ist ein Prozess, der Konsistenz und die Bereitschaft, Fehler zu machen, belohnt.</p>
+        <p><strong>Zweitens,</strong> ergänzen Sie Ihre Theorie mit echter Praxis. Leben Sie in Deutschland. Beschäftigen Sie sich mit deutscher Literatur, Musik und Kunst. Oder besser noch, üben Sie einfach Deutsch laut für sich selbst.</p>
+        <p><strong>Drittens,</strong> fügen Sie jeden Tag neue Wörter zu Ihrem Vokabular hinzu, indem Sie Karteikarten und Vokabellisten verwenden oder einfach in Ihrer Umgebung überall Merkzettel an die Wand kleben.</p>
+        <p><strong>Schließlich</strong> und am wichtigsten, versuchen Sie herauszufinden, was der höhere Zweck Ihres Sprachenlernens ist. Was auch immer der Grund ist, verlieren Sie nicht das Ziel aus den Augen. Schätzen Sie den Wert der kleinen Erfolge, und Sie werden erkennen, dass nicht nur die Prophezeiung richtig gewesen war, sondern auch, dass Sie ein kluger Student waren, der einmal die Zukunft vorhergesehen hatte.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DE: I. NOUNS -->
+<div class="section" id="de-nouns">
+  <div class="section-header">
+    <div class="section-num">I</div>
+    <div><div class="section-title">Nouns</div><div class="section-title-de">Mann / Deutschland / Poster / Liebe</div></div>
+  </div>
+  <div class="content">
+    <p>All German nouns have a defined gender: masculine, feminine, or neuter. This determines how related articles, adjectives, and pronouns are inflected.</p>
+    <div class="subsection">
+      <div class="subsection-title">Noun Gender Rules</div>
+      <table>
+        <thead><tr><th class="m">Masculine (der)</th><th class="f">Feminine (die)</th><th class="n">Neuter (das)</th></tr></thead>
+        <tbody>
+          <tr><td>Male people: <em>der Mann</em>, <em>der Lehrer</em></td><td>Female people: <em>die Frau</em>, <em>die Lehrerin</em></td><td>Babies &amp; young: <em>das Kind</em>, <em>das Kalb</em></td></tr>
+          <tr><td>Most ending -en, -er, -el; almost all ending -ant, -ent, -ist, -ismus, -ling, -or</td><td>Most ending -e; almost all ending -ung, -heit, -keit, -schaft, -ion, -tät, -ie</td><td>All ending -chen, -lein, -gut, -werk, -zeug, -ment, -tum, -um</td></tr>
+          <tr><td>Days, months, seasons, most weather, compass points</td><td>Nouns from adj. + -e: <em>die Wärme</em> (from <em>warm</em>)</td><td>Most starting with Ge-; metals; technical terms; all verb infinitives used as nouns</td></tr>
+        </tbody>
+      </table>
+      <div class="rule-box amber"><strong>Compound nouns:</strong> Gender follows the <em>last</em> noun: <span class="gender-m">der Zeitgeist</span>, <span class="gender-f">die Schadenfreude</span>, <span class="gender-n">das Fingerspitzengefühl</span>.</div>
+    </div>
+    <div class="subsection">
+      <div class="subsection-title">Cases &amp; Declension</div>
+      <table class="compact">
+        <thead><tr><th>Case</th><th class="m">Masc.</th><th class="f">Fem.</th><th class="n">Neut.</th><th class="pl">Plural</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Nom.</strong></td><td>der / ein Mann</td><td>die / eine Frau</td><td>das / ein Kind</td><td>die / keine Frauen</td></tr>
+          <tr><td><strong>Acc.</strong></td><td>den / einen Mann</td><td>die / eine Frau</td><td>das / ein Kind</td><td>die / keine Frauen</td></tr>
+          <tr><td><strong>Dat.</strong></td><td>dem / einem Mann</td><td>der / einer Frau</td><td>dem / einem Kind</td><td>den / keinen Frauen</td></tr>
+          <tr><td><strong>Gen.</strong></td><td>des / eines Mannes</td><td>der / einer Frau</td><td>des / eines Kindes</td><td>der / keiner Frauen</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="subsection">
+      <div class="subsection-title">Plural Formation</div>
+      <table class="compact">
+        <thead><tr><th>Ending</th><th>Rule</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td><strong>-n/-en</strong></td><td>Masc. -ent/-ist; fem. -in/-ung/-keit/-heit; 99% of nouns ending -e</td><td>die Tasse → die Tassen</td></tr>
+          <tr><td><strong>-e</strong></td><td>Many monosyllabic nouns (often + umlaut)</td><td>der Baum → die Bäume</td></tr>
+          <tr><td><strong>-er</strong></td><td>Many monosyllabic neuter nouns (+ umlaut)</td><td>das Haus → die Häuser</td></tr>
+          <tr><td><strong>-s</strong></td><td>Foreign words; nouns ending -a, -i, -o, -u, -y</td><td>das Auto → die Autos</td></tr>
+          <tr><td><strong>¨</strong></td><td>Masc./neut. ending -el, -er, -en (umlaut only)</td><td>der Apfel → die Äpfel</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- DE: II. ARTICLES -->
+<div class="section" id="de-articles">
+  <div class="section-header"><div class="section-num">II</div><div><div class="section-title">Articles</div></div></div>
+  <div class="content">
+    <div class="cols-2">
+      <div class="subsection">
+        <div class="subsection-title">Definite Article Endings</div>
+        <table class="compact">
+          <thead><tr><th></th><th class="m">M</th><th class="f">F</th><th class="n">N</th><th class="pl">PL</th></tr></thead>
+          <tbody>
+            <tr><td><strong>N</strong></td><td>r</td><td>e</td><td>s</td><td>e</td></tr>
+            <tr><td><strong>A</strong></td><td>n</td><td>e</td><td>s</td><td>e</td></tr>
+            <tr><td><strong>D</strong></td><td>m</td><td>r</td><td>m</td><td>n</td></tr>
+            <tr><td><strong>G</strong></td><td>s</td><td>r</td><td>s</td><td>r</td></tr>
+          </tbody>
+        </table>
+        <div class="rule-box green"><strong>Mnemonic:</strong> r·e·s·e, n·e·s·e, m·r·m·n, s·r·s·r</div>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">Indefinite Article Endings</div>
+        <table class="compact">
+          <thead><tr><th></th><th class="m">M</th><th class="f">F</th><th class="n">N</th><th class="pl">PL</th></tr></thead>
+          <tbody>
+            <tr><td><strong>N</strong></td><td>—</td><td>e</td><td>—</td><td>e</td></tr>
+            <tr><td><strong>A</strong></td><td>en</td><td>e</td><td>—</td><td>e</td></tr>
+            <tr><td><strong>D</strong></td><td>em</td><td>er</td><td>em</td><td>en</td></tr>
+            <tr><td><strong>G</strong></td><td>es</td><td>er</td><td>es</td><td>er</td></tr>
+          </tbody>
+        </table>
+        <div class="rule-box green"><strong>Tip:</strong> Three positions differ from the definite (masc. nom., neut. nom., neut. acc.) — they take no ending.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DE: III. ADJECTIVES -->
+<div class="section" id="de-adjectives">
+  <div class="section-header"><div class="section-num">III</div><div><div class="section-title">Adjectives</div></div></div>
+  <div class="content">
+    <div class="rule-box"><strong>Rule:</strong> No declension if the adjective doesn't precede a noun (<em>Das Poster ist groß</em>). If it does, choose the correct ending based on the article type.</div>
+    <div class="cols-3">
+      <div class="subsection">
+        <div class="subsection-title">After Definite Article</div>
+        <table class="compact">
+          <thead><tr><th></th><th>M</th><th>F</th><th>N</th><th>PL</th></tr></thead>
+          <tbody>
+            <tr><td><strong>N</strong></td><td>-e</td><td>-e</td><td>-e</td><td>-en</td></tr>
+            <tr><td><strong>A</strong></td><td>-en</td><td>-e</td><td>-e</td><td>-en</td></tr>
+            <tr><td><strong>D</strong></td><td>-en</td><td>-en</td><td>-en</td><td>-en</td></tr>
+            <tr><td><strong>G</strong></td><td>-en</td><td>-en</td><td>-en</td><td>-en</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">After Indefinite Article</div>
+        <table class="compact">
+          <thead><tr><th></th><th>M</th><th>F</th><th>N</th><th>PL</th></tr></thead>
+          <tbody>
+            <tr><td><strong>N</strong></td><td>-er</td><td>-e</td><td>-es</td><td>-en</td></tr>
+            <tr><td><strong>A</strong></td><td>-en</td><td>-e</td><td>-es</td><td>-en</td></tr>
+            <tr><td><strong>D</strong></td><td>-en</td><td>-en</td><td>-en</td><td>-en</td></tr>
+            <tr><td><strong>G</strong></td><td>-en</td><td>-en</td><td>-en</td><td>-en</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">No Article</div>
+        <table class="compact">
+          <thead><tr><th></th><th>M</th><th>F</th><th>N</th><th>PL</th></tr></thead>
+          <tbody>
+            <tr><td><strong>N</strong></td><td>-er</td><td>-e</td><td>-es</td><td>-e</td></tr>
+            <tr><td><strong>A</strong></td><td>-en</td><td>-e</td><td>-es</td><td>-e</td></tr>
+            <tr><td><strong>D</strong></td><td>-em</td><td>-er</td><td>-em</td><td>-en</td></tr>
+            <tr><td><strong>G</strong></td><td>-en</td><td>-er</td><td>-en</td><td>-er</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="subsection">
+      <div class="subsection-title">Comparatives &amp; Superlatives</div>
+      <table class="compact">
+        <thead><tr><th>Type</th><th>Adjective</th><th>Comparative</th><th>Superlative</th></tr></thead>
+        <tbody>
+          <tr><td>Regular</td><td>sicher</td><td>sicherer</td><td>am sichersten</td></tr>
+          <tr><td>+ Umlaut</td><td>groß</td><td>größer</td><td>am größten</td></tr>
+          <tr><td>Irregular</td><td>gut</td><td>besser</td><td>am besten</td></tr>
+          <tr><td>Irregular</td><td>viel</td><td>mehr</td><td>am meisten</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- DE: IV–IX (CONDENSED) -->
+<div class="section" id="de-pronouns">
+  <div class="section-header"><div class="section-num">IV</div><div><div class="section-title">Pronouns</div></div></div>
+  <div class="content">
+    <table class="compact">
+      <thead><tr><th></th><th>English</th><th>Nom</th><th>Acc</th><th>Dat</th><th>Refl.</th><th>Possessive</th></tr></thead>
+      <tbody>
+        <tr><td>1st sg.</td><td>I</td><td>ich</td><td>mich</td><td>mir</td><td>mich/mir</td><td>mein(-)</td></tr>
+        <tr><td>2nd sg.</td><td>you (inf.)</td><td>du</td><td>dich</td><td>dir</td><td>dich/dir</td><td>dein(-)</td></tr>
+        <tr><td>3rd sg. m</td><td>he</td><td>er</td><td>ihn</td><td>ihm</td><td>sich</td><td>sein(-)</td></tr>
+        <tr><td>3rd sg. f</td><td>she</td><td>sie</td><td>sie</td><td>ihr</td><td>sich</td><td>ihr(-)</td></tr>
+        <tr><td>3rd sg. n</td><td>it</td><td>es</td><td>es</td><td>ihm</td><td>sich</td><td>sein(-)</td></tr>
+        <tr><td>1st pl.</td><td>we</td><td>wir</td><td>uns</td><td>uns</td><td>uns</td><td>unser(-)</td></tr>
+        <tr><td>2nd pl.</td><td>you (pl.)</td><td>ihr</td><td>euch</td><td>euch</td><td>euch</td><td>euer(-)</td></tr>
+        <tr><td>2nd formal</td><td>you</td><td>Sie</td><td>Sie</td><td>Ihnen</td><td>sich</td><td>Ihr(-)</td></tr>
+        <tr><td>3rd pl.</td><td>they</td><td>sie</td><td>sie</td><td>ihnen</td><td>sich</td><td>ihr(-)</td></tr>
+      </tbody>
+    </table>
+    <p class="note"><strong>Relative pronouns</strong> follow the definite article pattern (der/die/das/die), except in the genitive (dessen/deren) and dative plural (denen). They introduce relative clauses and send the verb to the end.</p>
+  </div>
+</div>
+
+<div class="section" id="de-particles">
+  <div class="section-header"><div class="section-num">V</div><div><div class="section-title">Particles</div></div></div>
+  <div class="content">
+    <p>Uninflected words that add feeling or emphasis. Can always be removed without breaking grammar. Types: <strong>Intensifying</strong> (sehr, etwas, zu), <strong>Focus</strong> (sogar, besonders, vor allem), <strong>Negating</strong> (nicht), <strong>Modal</strong> (ja, doch, mal, eben, halt, wohl), <strong>Speech</strong> (ja, nein, genau), <strong>Interjections</strong> (ach!, schade!, hoppla!).</p>
+  </div>
+</div>
+
+<div class="section" id="de-verbs">
+  <div class="section-header"><div class="section-num">VI</div><div><div class="section-title">Verbs</div></div></div>
+  <div class="content">
+    <p>German verbs end in <strong>-en</strong> (or -n) in the infinitive. Present tense follows <strong>-e, -st, -t, -en, -t, -en</strong>. Types: <strong>Auxiliary</strong> (sein, haben, werden), <strong>Modal</strong> (können, müssen, sollen, wollen, dürfen, mögen), <strong>Strong</strong> (~150, stem change, PP in -en), <strong>Weak</strong> (regular, PP in -t), <strong>Mixed</strong> (elements of both). Verbs taking <em>sein</em> refer to a change in motion or state.</p>
+    <p class="note"><strong>Prefixes:</strong> Separable (ab-, an-, auf-, aus-, ein-, mit-, vor-, weg-) split in main clauses. Inseparable (be-, ent-, er-, ver-, zer-) never split. Mixed (durch-, über-, um-, unter-) can go either way.</p>
+  </div>
+</div>
+
+<div class="section" id="de-prepositions">
+  <div class="section-header"><div class="section-num">VII</div><div><div class="section-title">Prepositions</div></div></div>
+  <div class="content">
+    <div class="cols-2">
+      <div>
+        <p><strong>Accusative:</strong> durch, für, gegen, ohne, um, bis, entlang</p>
+        <p><strong>Dative:</strong> aus, mit, bei, seit, nach, gegenüber, außer, zu, von, ab</p>
+        <p><strong>Genitive:</strong> während, statt, trotz, innerhalb, außerhalb, wegen</p>
+      </div>
+      <div>
+        <p><strong>Two-way</strong> (dative = position, accusative = motion): an, auf, hinter, in, neben, über, unter, vor, zwischen</p>
+        <p class="note"><strong>Contractions:</strong> am (an+dem), im (in+dem), vom (von+dem), zum (zu+dem), zur (zu+der), beim (bei+dem), ins (in+das), ans (an+das)</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="de-conjunctions">
+  <div class="section-header"><div class="section-num">VIII</div><div><div class="section-title">Conjunctions</div></div></div>
+  <div class="content">
+    <p><strong>Coordinating</strong> (no word order change): und, oder, aber, doch, sondern</p>
+    <p><strong>Subordinating</strong> (verb to end): als, bis, nachdem, da, weil, dass, damit, falls, wenn, obwohl, indem</p>
+    <p><strong>Compound:</strong> entweder...oder, weder...noch, nicht nur...sondern auch, sowohl...als auch, je...desto, zwar...aber</p>
+  </div>
+</div>
+
+<div class="section" id="de-adverbs">
+  <div class="section-header"><div class="section-num">IX</div><div><div class="section-title">Adverbs</div></div></div>
+  <div class="content">
+    <p>Answer <strong>when?</strong> (gestern, heute, morgen, jetzt, bald), <strong>how?</strong> (allein, zusammen, leider, sehr), <strong>where?</strong> (hier, da, überall, oben, unten). <strong>Conjunctive adverbs</strong> connect ideas and invert subject/verb: außerdem, jedoch, trotzdem, deshalb, dennoch, also.</p>
+  </div>
+</div>
+
+<div class="section" id="de-word-order">
+  <div class="section-header"><div class="section-title">Word Order</div></div>
+  <div class="content">
+    <ul class="rule-list">
+      <li><span class="num">1.</span><strong>Statements:</strong> Lead verb always in Position 2. If something other than the subject takes Pos. 1, the subject moves to Pos. 3.</li>
+      <li><span class="num">2.</span><strong>Multiple verbs:</strong> Past participles and infinitives go to the end.</li>
+      <li><span class="num">3.</span><strong>Questions:</strong> Lead verb moves to Position 1.</li>
+      <li><span class="num">4.</span><strong>Dependent clauses:</strong> Subordinating conjunctions and relative pronouns send the lead verb to the end.</li>
+      <li><span class="num">5.</span><strong>Object order:</strong> Indirect before direct — unless the direct object is a pronoun, in which case it comes first.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="section" id="de-tenses">
+  <div class="section-header"><div class="section-title">Tenses &amp; Moods</div></div>
+  <div class="content">
+    <p><strong>6 Tenses:</strong> Present, Simple Past, Past Perfect (Perfekt — the primary spoken past), Pluperfect, Future I, Future II (rare).</p>
+    <p><strong>4 Moods:</strong> Indicative (reality), Subjunctive I (reported speech), Conditional / Subjunctive II (hypothetical), Imperative (commands).</p>
+    <p class="note">Past Perfect uses <em>haben/sein</em> (present) + PP. Pluperfect uses <em>haben/sein</em> (simple past) + PP. Future uses <em>werden</em> + infinitive. Conditional uses <em>würde</em> + infinitive or past stem + umlaut.</p>
+  </div>
+</div>
+
+<div class="section" id="de-passive">
+  <div class="section-header"><div class="section-title">Passive Voice</div></div>
+  <div class="content">
+    <p>Formed with <strong>werden</strong> + past participle. Agent by person: <em>von</em> + dative. Agent by thing: <em>durch</em> + accusative. The accusative object becomes the nominative subject.</p>
+    <div class="example">
+      <div class="de"><strong>Active:</strong> Die Bürger säubern den Park → <strong>Passive:</strong> Der Park wird (von den Bürgern) gesäubert</div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="de-cases">
+  <div class="section-header"><div class="section-title">The Four Cases</div></div>
+  <div class="content">
+    <div class="case-cards">
+      <div class="case-card" style="border-top-color:var(--nom)"><h4>Nominative</h4><div class="question">Wer? / Was?</div><p>The subject.</p></div>
+      <div class="case-card" style="border-top-color:var(--acc)"><h4>Accusative</h4><div class="question">Wen? / Was?</div><p>The direct object.</p></div>
+      <div class="case-card" style="border-top-color:var(--dat)"><h4>Dative</h4><div class="question">Wem?</div><p>The indirect object / recipient.</p></div>
+      <div class="case-card" style="border-top-color:var(--gen)"><h4>Genitive</h4><div class="question">Wessen?</div><p>The possessor.</p></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /main de -->
+</div><!-- /tab-de -->
+
+
+<!-- ============================================================ -->
+<!-- ====================== SPANISH TAB ========================= -->
+<!-- ============================================================ -->
+<div class="tab-content" id="tab-es">
+
+<div class="nav" id="nav-es">
+  <div class="nav-inner">
+    <a href="#es-intro">Intro</a>
+    <a href="#es-nouns">I. Nouns</a>
+    <a href="#es-articles">II. Articles</a>
+    <a href="#es-adjectives">III. Adjectives</a>
+    <a href="#es-pronouns">IV. Pronouns</a>
+    <a href="#es-verbs">V. Verbs</a>
+    <a href="#es-ser-estar">Ser vs. Estar</a>
+    <a href="#es-tenses">VI. Tenses &amp; Moods</a>
+    <a href="#es-prepositions">VII. Prepositions</a>
+    <a href="#es-conjunctions">VIII. Conjunctions</a>
+    <a href="#es-adverbs">IX. Adverbs</a>
+    <a href="#es-word-order">Word Order</a>
+    <a href="#es-passive">Passive &amp; Se</a>
+    <a href="#es-subjunctive">Subjunctive</a>
+  </div>
+</div>
+
+<div class="main">
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--masc)"></div> Masculine (el)</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--fem)"></div> Feminine (la)</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-green)"></div> Indicative</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-purple)"></div> Subjunctive</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-amber)"></div> Imperative</div>
+</div>
+
+<!-- ES: INTRO -->
+<div class="section" id="es-intro">
+  <div class="section-header"><div class="section-title">Introduction</div></div>
+  <div class="intro-text">
+    <div class="bilingual">
+      <div class="en-col">
+        <p>I once met a smart, hardworking student who prophesied that I would one day speak Spanish like a native. In order to do this, she told me, there are four crucial rules that must be mastered.</p>
+        <p><strong>First,</strong> don't expect to be perfect. Language learning is a process that rewards consistency and the willingness to make mistakes.</p>
+        <p><strong>Second,</strong> supplement your theory with real-world practice. Travel to a Spanish-speaking country. Immerse yourself in Spanish literature, music, and film. Or better yet, just practise Spanish out loud to yourself.</p>
+        <p><strong>Third,</strong> add new words to your vocabulary each day with the use of flashcards and vocabulary lists, or simply by labelling your surroundings at home.</p>
+        <p><strong>Finally</strong> and most importantly, try to figure out what the greater purpose of your language learning is. Whatever the reason, don't lose sight of the goal. Appreciate the value of small victories, and you will realise not only that the prophecy was correct, but also that you too were a smart student who once foresaw the future.</p>
+      </div>
+      <div class="es-col">
+        <p>Una vez conocí a un estudiante inteligente y trabajador que profetizó que algún día yo hablaría español como un nativo. Para lograrlo, me dijo, hay cuatro reglas fundamentales que deben dominarse.</p>
+        <p><strong>Primero,</strong> no esperes ser perfecto. El aprendizaje de idiomas es un proceso que recompensa la constancia y la disposición a cometer errores.</p>
+        <p><strong>Segundo,</strong> complementa tu teoría con práctica real. Viaja a un país hispanohablante. Sumérgete en la literatura, la música y el cine en español. O mejor aún, simplemente practica español en voz alta contigo mismo.</p>
+        <p><strong>Tercero,</strong> añade palabras nuevas a tu vocabulario cada día con el uso de tarjetas didácticas y listas de vocabulario, o simplemente etiquetando lo que te rodea en casa.</p>
+        <p><strong>Finalmente</strong> y lo más importante, intenta descubrir cuál es el propósito mayor de tu aprendizaje del idioma. Sea cual sea la razón, no pierdas de vista la meta. Valora las pequeñas victorias, y te darás cuenta no solo de que la profecía era correcta, sino también de que tú también eras un estudiante inteligente que una vez previó el futuro.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ES: I. NOUNS -->
+<div class="section" id="es-nouns">
+  <div class="section-header">
+    <div class="section-num">I</div>
+    <div><div class="section-title">Nouns</div><div class="section-title-es">hombre / España / cartel / amor</div></div>
+  </div>
+  <div class="content">
+    <p>All Spanish nouns have a defined gender: <strong>masculine</strong> or <strong>feminine</strong> (there is no neuter). Gender determines how articles, adjectives, and pronouns agree with the noun.</p>
+
+    <div class="subsection">
+      <div class="subsection-title">Noun Gender Rules</div>
+      <table>
+        <thead><tr><th class="m">Masculine (el)</th><th class="f">Feminine (la)</th></tr></thead>
+        <tbody>
+          <tr><td>Most nouns ending in <strong>-o</strong>: <em>el libro</em> (book), <em>el gato</em> (cat)</td><td>Most nouns ending in <strong>-a</strong>: <em>la casa</em> (house), <em>la mesa</em> (table)</td></tr>
+          <tr><td>Most ending in <strong>-or, -aje, -ón, -an, -ambre</strong>: <em>el color</em>, <em>el viaje</em>, <em>el corazón</em></td><td>Most ending in <strong>-ción, -sión, -dad, -tad, -tud, -umbre, -eza, -anza, -encia</strong>: <em>la nación</em>, <em>la ciudad</em>, <em>la belleza</em></td></tr>
+          <tr><td>Days of the week: <em>el lunes</em>; compass points; rivers, seas, oceans; colours used as nouns</td><td>Letters of the alphabet: <em>la a</em>, <em>la b</em>; islands; roads and motorways</td></tr>
+          <tr><td>Nouns of Greek origin ending <strong>-ma, -pa, -ta</strong>: <em>el problema</em>, <em>el mapa</em>, <em>el planeta</em></td><td>Exception: <em>la mano</em> (hand), <em>la radio</em> (radio), <em>la foto</em> (photo)</td></tr>
+        </tbody>
+      </table>
+
+      <div class="rule-box orange">
+        <strong>Key exceptions:</strong> Many common words break the rules: <em>el día</em> (day, masc. despite -a), <em>el problema</em> (problem, masc.), <em>la mano</em> (hand, fem. despite -o). Nouns beginning with stressed <em>a-</em> or <em>ha-</em> take <em>el</em> in the singular but remain feminine: <em>el agua fría</em> (the cold water), <em>las aguas</em>.
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Plural Formation</div>
+      <table>
+        <thead><tr><th>Rule</th><th>Singular</th><th>Plural</th></tr></thead>
+        <tbody>
+          <tr><td>Ends in vowel → add <strong>-s</strong></td><td>el libro</td><td>los libros</td></tr>
+          <tr><td>Ends in consonant → add <strong>-es</strong></td><td>la ciudad</td><td>las ciudades</td></tr>
+          <tr><td>Ends in <strong>-z</strong> → change to <strong>-ces</strong></td><td>el lápiz</td><td>los lápices</td></tr>
+          <tr><td>Ends in <strong>-s</strong> (unstressed final syllable) → no change</td><td>el lunes</td><td>los lunes</td></tr>
+          <tr><td>Ends in stressed vowel → add <strong>-es</strong> (sometimes <strong>-s</strong>)</td><td>el tabú</td><td>los tabúes</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Some nouns gain or lose an accent mark in the plural to maintain the original stress: <em>la nación → las naciones</em>, <em>el joven → los jóvenes</em>.</p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Occupational &amp; Gendered Nouns</div>
+      <table class="compact">
+        <thead><tr><th>Pattern</th><th>Masculine</th><th>Feminine</th></tr></thead>
+        <tbody>
+          <tr><td>-o → -a</td><td>el médico (doctor)</td><td>la médica</td></tr>
+          <tr><td>-or → -ora</td><td>el profesor (teacher)</td><td>la profesora</td></tr>
+          <tr><td>-nte (no change or → -nta)</td><td>el estudiante</td><td>la estudiante</td></tr>
+          <tr><td>-ista (no change)</td><td>el periodista (journalist)</td><td>la periodista</td></tr>
+          <tr><td>Completely different word</td><td>el hombre (man)</td><td>la mujer (woman)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ES: II. ARTICLES -->
+<div class="section" id="es-articles">
+  <div class="section-header">
+    <div class="section-num">II</div>
+    <div><div class="section-title">Articles</div><div class="section-title-es">el hombre / un cartel</div></div>
+  </div>
+  <div class="content">
+    <div class="cols-2">
+      <div class="subsection">
+        <div class="subsection-title">Definite Articles</div>
+        <table class="compact">
+          <thead><tr><th></th><th class="m">Masculine</th><th class="f">Feminine</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Singular</strong></td><td>el</td><td>la</td></tr>
+            <tr><td><strong>Plural</strong></td><td>los</td><td>las</td></tr>
+          </tbody>
+        </table>
+        <p class="note">Spanish uses definite articles much more than English: with abstract nouns (<em>el amor es ciego</em>), languages (<em>el español es útil</em>), titles (<em>el señor García</em>), days of the week, and body parts in place of possessives (<em>me lavo las manos</em>).</p>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">Indefinite Articles</div>
+        <table class="compact">
+          <thead><tr><th></th><th class="m">Masculine</th><th class="f">Feminine</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Singular</strong></td><td>un</td><td>una</td></tr>
+            <tr><td><strong>Plural</strong></td><td>unos</td><td>unas</td></tr>
+          </tbody>
+        </table>
+        <p class="note"><strong>Omit</strong> the indefinite article after <em>ser</em> with unmodified professions/nationalities: <em>Soy médico</em> (I'm a doctor). But include it with adjectives: <em>Soy un buen médico</em>.</p>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Contractions</div>
+      <p>Spanish has only two mandatory contractions:</p>
+      <table class="compact">
+        <thead><tr><th>Preposition + Article</th><th>Contraction</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>a + el</td><td><strong>al</strong></td><td><em>Voy al cine</em> (I'm going to the cinema)</td></tr>
+          <tr><td>de + el</td><td><strong>del</strong></td><td><em>Vengo del trabajo</em> (I come from work)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">The Neuter Article <em>lo</em></div>
+      <p>Spanish has a neuter article <em>lo</em> used not with nouns but with adjectives, adverbs, and clauses to create abstract noun phrases:</p>
+      <div class="example">
+        <div class="es"><em>Lo bueno</em> — the good thing/part &nbsp;|&nbsp; <em>Lo importante es estudiar</em> — The important thing is to study</div>
+        <div class="es"><em>No sabes lo difícil que es</em> — You don't know how difficult it is</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ES: III. ADJECTIVES -->
+<div class="section" id="es-adjectives">
+  <div class="section-header">
+    <div class="section-num">III</div>
+    <div><div class="section-title">Adjectives</div><div class="section-title-es">el cartel grande / un cartel grande</div></div>
+  </div>
+  <div class="content">
+    <div class="rule-box orange">
+      <strong>Core rule:</strong> Spanish adjectives agree with the noun in <strong>gender</strong> and <strong>number</strong>. Most adjectives come <em>after</em> the noun (unlike English).
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Adjective Agreement</div>
+      <table>
+        <thead><tr><th>Type</th><th class="m">Masc. Sg.</th><th class="f">Fem. Sg.</th><th class="m">Masc. Pl.</th><th class="f">Fem. Pl.</th></tr></thead>
+        <tbody>
+          <tr><td>Ends in <strong>-o</strong></td><td>alto</td><td>alta</td><td>altos</td><td>altas</td></tr>
+          <tr><td>Ends in <strong>-e</strong></td><td>grande</td><td>grande</td><td>grandes</td><td>grandes</td></tr>
+          <tr><td>Ends in <strong>consonant</strong></td><td>fácil</td><td>fácil</td><td>fáciles</td><td>fáciles</td></tr>
+          <tr><td>Nationality ending in consonant</td><td>español</td><td>español<strong>a</strong></td><td>español<strong>es</strong></td><td>español<strong>as</strong></td></tr>
+          <tr><td>Ends in <strong>-dor/-tor/-sor</strong></td><td>trabajador</td><td>trabajador<strong>a</strong></td><td>trabajador<strong>es</strong></td><td>trabajador<strong>as</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Adjective Position</div>
+      <table>
+        <thead><tr><th>Position</th><th>Rule</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td><strong>After</strong> the noun (default)</td><td>Distinguishes the noun from others of its kind — descriptive, classifying, or restrictive</td><td><em>un coche <strong>rojo</strong></em> (a red car — not a blue one)</td></tr>
+          <tr><td><strong>Before</strong> the noun</td><td>Emphasises an inherent quality, or is subjective / emotional</td><td><em>una <strong>hermosa</strong> ciudad</em> (a beautiful city)</td></tr>
+          <tr><td><strong>Meaning changes</strong></td><td>Some adjectives change meaning depending on position</td><td><em>un <strong>gran</strong> hombre</em> (a great man) vs. <em>un hombre <strong>grande</strong></em> (a big man)</td></tr>
+        </tbody>
+      </table>
+      <div class="rule-box amber">
+        <strong>Shortened forms (apocopation):</strong> Some adjectives lose their final syllable before a masculine singular noun: <em>bueno → buen</em>, <em>malo → mal</em>, <em>primero → primer</em>, <em>tercero → tercer</em>, <em>grande → gran</em> (before any singular noun), <em>alguno → algún</em>, <em>ninguno → ningún</em>.
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Comparatives &amp; Superlatives</div>
+      <table>
+        <thead><tr><th>Structure</th><th>Formula</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>More ... than</td><td>más + adj. + que</td><td><em>Ella es <strong>más alta que</strong> él</em> (She is taller than him)</td></tr>
+          <tr><td>Less ... than</td><td>menos + adj. + que</td><td><em>Es <strong>menos difícil que</strong> el alemán</em></td></tr>
+          <tr><td>As ... as</td><td>tan + adj. + como</td><td><em>Es <strong>tan fácil como</strong> el inglés</em></td></tr>
+          <tr><td>Relative superlative</td><td>el/la/los/las + más/menos + adj.</td><td><em>Es <strong>la más inteligente</strong> de la clase</em></td></tr>
+          <tr><td>Absolute superlative</td><td>adj. + -ísimo/a</td><td><em>Es <strong>facilísimo</strong></em> (It's extremely easy)</td></tr>
+        </tbody>
+      </table>
+      <table class="compact">
+        <thead><tr><th>Irregular</th><th>Comparative</th><th>Superlative</th></tr></thead>
+        <tbody>
+          <tr><td>bueno (good)</td><td>mejor (better)</td><td>el mejor (the best)</td></tr>
+          <tr><td>malo (bad)</td><td>peor (worse)</td><td>el peor (the worst)</td></tr>
+          <tr><td>grande (big/great)</td><td>mayor (bigger/older)</td><td>el mayor (the biggest/oldest)</td></tr>
+          <tr><td>pequeño (small/young)</td><td>menor (smaller/younger)</td><td>el menor (the smallest/youngest)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ES: IV. PRONOUNS -->
+<div class="section" id="es-pronouns">
+  <div class="section-header">
+    <div class="section-num">IV</div>
+    <div><div class="section-title">Pronouns</div><div class="section-title-es">Yo se lo di a alguien — I gave it to someone</div></div>
+  </div>
+  <div class="content">
+
+    <div class="subsection">
+      <div class="subsection-title">Subject, Object &amp; Reflexive Pronouns</div>
+      <table>
+        <thead><tr><th>Person</th><th>Subject</th><th>Direct Object</th><th>Indirect Object</th><th>Reflexive</th><th>Prepositional</th></tr></thead>
+        <tbody>
+          <tr><td>1st sg.</td><td>yo</td><td>me</td><td>me</td><td>me</td><td>mí (conmigo)</td></tr>
+          <tr><td>2nd sg. (inf.)</td><td>tú</td><td>te</td><td>te</td><td>te</td><td>ti (contigo)</td></tr>
+          <tr><td>3rd sg. m.</td><td>él</td><td>lo (le*)</td><td>le (se**)</td><td>se</td><td>él</td></tr>
+          <tr><td>3rd sg. f.</td><td>ella</td><td>la</td><td>le (se**)</td><td>se</td><td>ella</td></tr>
+          <tr><td>2nd sg. (formal)</td><td>usted (Ud.)</td><td>lo/la</td><td>le (se**)</td><td>se</td><td>usted</td></tr>
+          <tr><td>1st pl.</td><td>nosotros/as</td><td>nos</td><td>nos</td><td>nos</td><td>nosotros/as</td></tr>
+          <tr><td>2nd pl. (Spain)</td><td>vosotros/as</td><td>os</td><td>os</td><td>os</td><td>vosotros/as</td></tr>
+          <tr><td>3rd pl. m.</td><td>ellos</td><td>los (les*)</td><td>les (se**)</td><td>se</td><td>ellos</td></tr>
+          <tr><td>3rd pl. f.</td><td>ellas</td><td>las</td><td>les (se**)</td><td>se</td><td>ellas</td></tr>
+          <tr><td>2nd pl. (formal)</td><td>ustedes (Uds.)</td><td>los/las</td><td>les (se**)</td><td>se</td><td>ustedes</td></tr>
+        </tbody>
+      </table>
+      <p class="note">* <strong>Leísmo:</strong> In much of Spain, <em>le</em> is used instead of <em>lo</em> for masculine people (direct object). ** When both indirect and direct object pronouns are 3rd person, <em>le/les</em> becomes <strong>se</strong>: <em>Se lo di</em> (I gave it to him/her/them).</p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Pronoun Placement</div>
+      <div class="rule-box orange">
+        <strong>Before</strong> a conjugated verb: <em>Lo veo</em> (I see it). <strong>Attached to</strong> infinitives, gerunds, and affirmative commands: <em>Quiero verlo</em> / <em>Viéndolo</em> / <em>¡Dímelo!</em> (Tell it to me!). Order when doubled: <strong>Indirect before Direct</strong> (RID rule: Reflexive → Indirect → Direct).
+      </div>
+    </div>
+
+    <div class="cols-2">
+      <div class="subsection">
+        <div class="subsection-title">Possessive Adjectives &amp; Pronouns</div>
+        <table class="compact">
+          <thead><tr><th>Person</th><th>Short Form (before noun)</th><th>Long Form (after noun / standalone)</th></tr></thead>
+          <tbody>
+            <tr><td>my</td><td>mi, mis</td><td>mío/a, míos/as</td></tr>
+            <tr><td>your (inf.)</td><td>tu, tus</td><td>tuyo/a, tuyos/as</td></tr>
+            <tr><td>his/her/your (form.)</td><td>su, sus</td><td>suyo/a, suyos/as</td></tr>
+            <tr><td>our</td><td>nuestro/a, nuestros/as</td><td>nuestro/a, nuestros/as</td></tr>
+            <tr><td>your (pl., Spain)</td><td>vuestro/a, vuestros/as</td><td>vuestro/a, vuestros/as</td></tr>
+            <tr><td>their/your (form. pl.)</td><td>su, sus</td><td>suyo/a, suyos/as</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">Demonstrative, Relative &amp; Interrogative</div>
+        <table class="compact">
+          <thead><tr><th>Distance</th><th>M. Sg.</th><th>F. Sg.</th><th>M. Pl.</th><th>F. Pl.</th><th>Neuter</th></tr></thead>
+          <tbody>
+            <tr><td>This (near)</td><td>este</td><td>esta</td><td>estos</td><td>estas</td><td>esto</td></tr>
+            <tr><td>That (mid)</td><td>ese</td><td>esa</td><td>esos</td><td>esas</td><td>eso</td></tr>
+            <tr><td>That (far)</td><td>aquel</td><td>aquella</td><td>aquellos</td><td>aquellas</td><td>aquello</td></tr>
+          </tbody>
+        </table>
+        <p><strong>Relative:</strong> que (that/which/who), quien/quienes (who — after prepositions), el/la cual (which — formal), cuyo/a (whose), donde (where).</p>
+        <p><strong>Interrogative:</strong> ¿Quién? (who), ¿Qué? (what), ¿Cuál/es? (which), ¿Dónde? (where), ¿Cuándo? (when), ¿Cómo? (how), ¿Por qué? (why), ¿Cuánto/a? (how much).</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ES: V. VERBS -->
+<div class="section" id="es-verbs">
+  <div class="section-header">
+    <div class="section-num">V</div>
+    <div><div class="section-title">Verbs</div><div class="section-title-es">Deberías usarlo para aprender. — You should use it to learn.</div></div>
+  </div>
+  <div class="content">
+    <p>Spanish verbs belong to three conjugation groups based on their infinitive ending: <strong>-ar</strong>, <strong>-er</strong>, <strong>-ir</strong>. Each group follows its own set of endings across all tenses.</p>
+
+    <div class="subsection">
+      <div class="subsection-title">Present Tense — Regular Conjugation</div>
+      <table>
+        <thead><tr><th></th><th>-AR (hablar)</th><th>-ER (comer)</th><th>-IR (vivir)</th></tr></thead>
+        <tbody>
+          <tr><td><strong>yo</strong></td><td>habl<strong>o</strong></td><td>com<strong>o</strong></td><td>viv<strong>o</strong></td></tr>
+          <tr><td><strong>tú</strong></td><td>habl<strong>as</strong></td><td>com<strong>es</strong></td><td>viv<strong>es</strong></td></tr>
+          <tr><td><strong>él/ella/Ud.</strong></td><td>habl<strong>a</strong></td><td>com<strong>e</strong></td><td>viv<strong>e</strong></td></tr>
+          <tr><td><strong>nosotros</strong></td><td>habl<strong>amos</strong></td><td>com<strong>emos</strong></td><td>viv<strong>imos</strong></td></tr>
+          <tr><td><strong>vosotros</strong></td><td>habl<strong>áis</strong></td><td>com<strong>éis</strong></td><td>viv<strong>ís</strong></td></tr>
+          <tr><td><strong>ellos/Uds.</strong></td><td>habl<strong>an</strong></td><td>com<strong>en</strong></td><td>viv<strong>en</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Stem-Changing Verbs (Present Tense)</div>
+      <p>Many common verbs change their stem vowel in all forms <em>except</em> nosotros/vosotros (the "boot" pattern):</p>
+      <table class="compact">
+        <thead><tr><th>Change</th><th>Verb</th><th>yo</th><th>tú</th><th>él</th><th>nosotros</th><th>vosotros</th><th>ellos</th></tr></thead>
+        <tbody>
+          <tr><td><strong>e → ie</strong></td><td>pensar (think)</td><td>pienso</td><td>piensas</td><td>piensa</td><td>pensamos</td><td>pensáis</td><td>piensan</td></tr>
+          <tr><td><strong>o → ue</strong></td><td>poder (can)</td><td>puedo</td><td>puedes</td><td>puede</td><td>podemos</td><td>podéis</td><td>pueden</td></tr>
+          <tr><td><strong>e → i</strong></td><td>pedir (ask for)</td><td>pido</td><td>pides</td><td>pide</td><td>pedimos</td><td>pedís</td><td>piden</td></tr>
+          <tr><td><strong>u → ue</strong></td><td>jugar (play)</td><td>juego</td><td>juegas</td><td>juega</td><td>jugamos</td><td>jugáis</td><td>juegan</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Key Irregular Verbs — Present Tense</div>
+      <table class="compact">
+        <thead><tr><th>Verb</th><th>yo</th><th>tú</th><th>él</th><th>nosotros</th><th>vosotros</th><th>ellos</th></tr></thead>
+        <tbody>
+          <tr><td><strong>ser</strong> (to be)</td><td>soy</td><td>eres</td><td>es</td><td>somos</td><td>sois</td><td>son</td></tr>
+          <tr><td><strong>estar</strong> (to be)</td><td>estoy</td><td>estás</td><td>está</td><td>estamos</td><td>estáis</td><td>están</td></tr>
+          <tr><td><strong>ir</strong> (to go)</td><td>voy</td><td>vas</td><td>va</td><td>vamos</td><td>vais</td><td>van</td></tr>
+          <tr><td><strong>tener</strong> (to have)</td><td>tengo</td><td>tienes</td><td>tiene</td><td>tenemos</td><td>tenéis</td><td>tienen</td></tr>
+          <tr><td><strong>hacer</strong> (to do/make)</td><td>hago</td><td>haces</td><td>hace</td><td>hacemos</td><td>hacéis</td><td>hacen</td></tr>
+          <tr><td><strong>decir</strong> (to say)</td><td>digo</td><td>dices</td><td>dice</td><td>decimos</td><td>decís</td><td>dicen</td></tr>
+          <tr><td><strong>saber</strong> (to know)</td><td>sé</td><td>sabes</td><td>sabe</td><td>sabemos</td><td>sabéis</td><td>saben</td></tr>
+          <tr><td><strong>haber</strong> (to have — aux.)</td><td>he</td><td>has</td><td>ha</td><td>hemos</td><td>habéis</td><td>han</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Past Participles &amp; Gerunds</div>
+      <div class="cols-2">
+        <div>
+          <p class="table-label">Past Participle (used in compound tenses)</p>
+          <table class="compact">
+            <tbody>
+              <tr><td>-ar → <strong>-ado</strong></td><td>hablar → hablado</td></tr>
+              <tr><td>-er / -ir → <strong>-ido</strong></td><td>comer → comido, vivir → vivido</td></tr>
+            </tbody>
+          </table>
+          <p class="note"><strong>Irregular PPs:</strong> abrir → abierto, decir → dicho, escribir → escrito, hacer → hecho, morir → muerto, poner → puesto, resolver → resuelto, romper → roto, ver → visto, volver → vuelto.</p>
+        </div>
+        <div>
+          <p class="table-label">Gerund (present participle)</p>
+          <table class="compact">
+            <tbody>
+              <tr><td>-ar → <strong>-ando</strong></td><td>hablar → hablando</td></tr>
+              <tr><td>-er / -ir → <strong>-iendo</strong></td><td>comer → comiendo, vivir → viviendo</td></tr>
+            </tbody>
+          </table>
+          <p class="note"><strong>Irregular gerunds:</strong> decir → diciendo, dormir → durmiendo, leer → leyendo, ir → yendo, poder → pudiendo, pedir → pidiendo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ES: SER VS ESTAR -->
+<div class="section" id="es-ser-estar">
+  <div class="section-header">
+    <div class="section-title">Ser vs. Estar — The Two "To Be" Verbs</div>
+  </div>
+  <div class="content">
+    <p>One of the trickiest aspects of Spanish for English speakers. Both mean "to be" but are used in fundamentally different contexts.</p>
+    <div class="cols-2">
+      <div class="subsection">
+        <div class="subsection-title">Ser — Identity, Essence, Permanence</div>
+        <table class="compact">
+          <thead><tr><th>Use</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr><td>Identity / Definition</td><td><em>Soy profesor</em> (I'm a teacher)</td></tr>
+            <tr><td>Origin / Nationality</td><td><em>Es de México</em> (He's from Mexico)</td></tr>
+            <tr><td>Material / Composition</td><td><em>La mesa es de madera</em> (The table is wooden)</td></tr>
+            <tr><td>Possession</td><td><em>El libro es mío</em> (The book is mine)</td></tr>
+            <tr><td>Time / Date</td><td><em>Son las tres</em> (It's three o'clock)</td></tr>
+            <tr><td>Inherent characteristics</td><td><em>Ella es alta</em> (She is tall)</td></tr>
+            <tr><td>Events (location of)</td><td><em>La fiesta es en mi casa</em> (The party is at my house)</td></tr>
+            <tr><td>Passive voice</td><td><em>Fue construido en 1900</em> (It was built in 1900)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">Estar — State, Condition, Location</div>
+        <table class="compact">
+          <thead><tr><th>Use</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr><td>Location (physical)</td><td><em>Estoy en casa</em> (I'm at home)</td></tr>
+            <tr><td>Temporary states / emotions</td><td><em>Estoy cansado</em> (I'm tired)</td></tr>
+            <tr><td>Health</td><td><em>¿Cómo estás?</em> (How are you?)</td></tr>
+            <tr><td>Result of an action</td><td><em>La puerta está abierta</em> (The door is open)</td></tr>
+            <tr><td>Progressive tenses</td><td><em>Estoy comiendo</em> (I'm eating)</td></tr>
+            <tr><td>Changed perception</td><td><em>¡Estás muy guapo hoy!</em> (You look great today!)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="rule-box rose">
+      <strong>Meaning shifts:</strong> Some adjectives change meaning depending on which verb is used: <em>ser aburrido</em> (to be boring) vs. <em>estar aburrido</em> (to be bored); <em>ser listo</em> (to be clever) vs. <em>estar listo</em> (to be ready); <em>ser malo</em> (to be bad/evil) vs. <em>estar malo</em> (to be ill).
+    </div>
+  </div>
+</div>
+
+<!-- ES: VI. TENSES & MOODS -->
+<div class="section" id="es-tenses">
+  <div class="section-header">
+    <div class="section-num">VI</div>
+    <div><div class="section-title">Tenses &amp; Moods</div></div>
+  </div>
+  <div class="content">
+    <p>Spanish has three moods (Indicative, Subjunctive, Imperative) and a rich tense system within each. Here is a complete overview of the indicative tenses.</p>
+
+    <div class="subsection">
+      <div class="subsection-title">Indicative Tenses — Regular Verb Endings</div>
+      <table>
+        <thead><tr><th>Tense</th><th>Use</th><th>-AR (hablar)</th><th>-ER (comer)</th><th>-IR (vivir)</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Present</strong></td><td>Current actions, habits, universal truths</td><td>hablo, hablas, habla, hablamos, habláis, hablan</td><td>como, comes, come, comemos, coméis, comen</td><td>vivo, vives, vive, vivimos, vivís, viven</td></tr>
+          <tr><td><strong>Preterite</strong></td><td>Completed past actions</td><td>hablé, hablaste, habló, hablamos, hablasteis, hablaron</td><td>comí, comiste, comió, comimos, comisteis, comieron</td><td>viví, viviste, vivió, vivimos, vivisteis, vivieron</td></tr>
+          <tr><td><strong>Imperfect</strong></td><td>Ongoing/habitual past, descriptions, background</td><td>hablaba, hablabas, hablaba, hablábamos, hablabais, hablaban</td><td>comía, comías, comía, comíamos, comíais, comían</td><td>vivía, vivías, vivía, vivíamos, vivíais, vivían</td></tr>
+          <tr><td><strong>Future</strong></td><td>Future actions, probability in present</td><td colspan="3">hablaré, hablarás, hablará, hablaremos, hablaréis, hablarán (same endings for all groups: -é, -ás, -á, -emos, -éis, -án added to full infinitive)</td></tr>
+          <tr><td><strong>Conditional</strong></td><td>Would do, polite requests, probability in past</td><td colspan="3">hablaría, hablarías, hablaría, hablaríamos, hablaríais, hablarían (same endings for all: -ía, -ías, -ía, -íamos, -íais, -ían added to full infinitive)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Compound Tenses (haber + past participle)</div>
+      <table>
+        <thead><tr><th>Tense</th><th>Construction</th><th>Example</th><th>English</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Present Perfect</strong></td><td>he/has/ha/hemos/habéis/han + PP</td><td><em>He hablado con ella</em></td><td>I have spoken with her</td></tr>
+          <tr><td><strong>Pluperfect</strong></td><td>había/habías/... + PP</td><td><em>Ya había comido</em></td><td>I had already eaten</td></tr>
+          <tr><td><strong>Future Perfect</strong></td><td>habré/habrás/... + PP</td><td><em>Habré terminado para entonces</em></td><td>I will have finished by then</td></tr>
+          <tr><td><strong>Conditional Perfect</strong></td><td>habría/habrías/... + PP</td><td><em>Habría ido, pero no pude</em></td><td>I would have gone, but I couldn't</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Preterite vs. Imperfect</div>
+      <div class="cols-2">
+        <div>
+          <p class="table-label">Preterite (pretérito indefinido)</p>
+          <table class="compact">
+            <thead><tr><th>Use for...</th></tr></thead>
+            <tbody>
+              <tr><td>Completed actions with a clear start/end</td></tr>
+              <tr><td>Sequences of events</td></tr>
+              <tr><td>Actions that interrupted something else</td></tr>
+              <tr><td>Specific number of times</td></tr>
+            </tbody>
+          </table>
+          <div class="example"><div class="es"><em>Ayer <strong>fui</strong> al cine.</em></div><div class="en">Yesterday I went to the cinema.</div></div>
+        </div>
+        <div>
+          <p class="table-label">Imperfect (pretérito imperfecto)</p>
+          <table class="compact">
+            <thead><tr><th>Use for...</th></tr></thead>
+            <tbody>
+              <tr><td>Habitual or repeated actions in the past</td></tr>
+              <tr><td>Background descriptions, setting the scene</td></tr>
+              <tr><td>Ongoing actions when something else happened</td></tr>
+              <tr><td>Age, time, weather in the past</td></tr>
+            </tbody>
+          </table>
+          <div class="example"><div class="es"><em>Cuando era niño, <strong>iba</strong> al parque todos los días.</em></div><div class="en">When I was a child, I used to go to the park every day.</div></div>
+        </div>
+      </div>
+      <div class="rule-box"><strong>Together:</strong> <em>Mientras yo <strong>dormía</strong> (impf.), sonó (pret.) el teléfono.</em> — While I was sleeping, the phone rang.</div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Irregular Preterite Stems</div>
+      <table class="compact">
+        <thead><tr><th>Verb</th><th>Stem</th><th>Endings (shared)</th></tr></thead>
+        <tbody>
+          <tr><td>tener (have)</td><td>tuv-</td><td rowspan="8">-e, -iste, -o, -imos, -isteis, -ieron (note: no accents, -eron after j)</td></tr>
+          <tr><td>estar (be)</td><td>estuv-</td></tr>
+          <tr><td>poder (can)</td><td>pud-</td></tr>
+          <tr><td>poner (put)</td><td>pus-</td></tr>
+          <tr><td>saber (know)</td><td>sup-</td></tr>
+          <tr><td>hacer (do)</td><td>hic-/hiz-</td></tr>
+          <tr><td>querer (want)</td><td>quis-</td></tr>
+          <tr><td>decir (say)</td><td>dij-</td></tr>
+        </tbody>
+      </table>
+      <p class="note"><strong>Ser</strong> and <strong>ir</strong> share the same preterite forms: fui, fuiste, fue, fuimos, fuisteis, fueron. Context determines meaning.</p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Irregular Future &amp; Conditional Stems</div>
+      <p>These verbs use an irregular stem but the same endings as regular verbs:</p>
+      <table class="compact">
+        <thead><tr><th>Verb</th><th>Stem</th><th>Future (yo)</th><th>Conditional (yo)</th></tr></thead>
+        <tbody>
+          <tr><td>tener</td><td>tendr-</td><td>tendré</td><td>tendría</td></tr>
+          <tr><td>poder</td><td>podr-</td><td>podré</td><td>podría</td></tr>
+          <tr><td>saber</td><td>sabr-</td><td>sabré</td><td>sabría</td></tr>
+          <tr><td>hacer</td><td>har-</td><td>haré</td><td>haría</td></tr>
+          <tr><td>decir</td><td>dir-</td><td>diré</td><td>diría</td></tr>
+          <tr><td>salir</td><td>saldr-</td><td>saldré</td><td>saldría</td></tr>
+          <tr><td>venir</td><td>vendr-</td><td>vendré</td><td>vendría</td></tr>
+          <tr><td>poner</td><td>pondr-</td><td>pondré</td><td>pondría</td></tr>
+          <tr><td>querer</td><td>querr-</td><td>querré</td><td>querría</td></tr>
+          <tr><td>haber</td><td>habr-</td><td>habré</td><td>habría</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ES: VII. PREPOSITIONS -->
+<div class="section" id="es-prepositions">
+  <div class="section-header">
+    <div class="section-num">VII</div>
+    <div><div class="section-title">Prepositions</div><div class="section-title-es">El cartel está en la pared — The poster is on the wall</div></div>
+  </div>
+  <div class="content">
+    <div class="cols-2">
+      <div class="subsection">
+        <div class="subsection-title">Simple Prepositions</div>
+        <table class="compact">
+          <tbody>
+            <tr><td><strong>a</strong></td><td>to, at (direction, time, recipient)</td></tr>
+            <tr><td><strong>con</strong></td><td>with</td></tr>
+            <tr><td><strong>de</strong></td><td>of, from, about</td></tr>
+            <tr><td><strong>en</strong></td><td>in, on, at</td></tr>
+            <tr><td><strong>entre</strong></td><td>between, among</td></tr>
+            <tr><td><strong>hacia</strong></td><td>toward</td></tr>
+            <tr><td><strong>hasta</strong></td><td>until, up to</td></tr>
+            <tr><td><strong>para</strong></td><td>for (purpose, destination, deadline)</td></tr>
+            <tr><td><strong>por</strong></td><td>for (reason, exchange, duration), by, through</td></tr>
+            <tr><td><strong>sin</strong></td><td>without</td></tr>
+            <tr><td><strong>sobre</strong></td><td>on, about, over</td></tr>
+            <tr><td><strong>según</strong></td><td>according to</td></tr>
+            <tr><td><strong>tras</strong></td><td>after, behind</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div class="subsection">
+          <div class="subsection-title">Por vs. Para</div>
+          <table class="compact">
+            <thead><tr><th>POR (cause, exchange, duration)</th><th>PARA (purpose, destination, deadline)</th></tr></thead>
+            <tbody>
+              <tr><td><em>Lo hizo <strong>por</strong> amor</em> (He did it out of love)</td><td><em>Es <strong>para</strong> ti</em> (It's for you)</td></tr>
+              <tr><td><em>Gracias <strong>por</strong> todo</em> (Thanks for everything)</td><td><em>Estudio <strong>para</strong> aprender</em> (I study to learn)</td></tr>
+              <tr><td><em>Viajé <strong>por</strong> España</em> (I travelled through Spain)</td><td><em>Salgo <strong>para</strong> Madrid</em> (I leave for Madrid)</td></tr>
+              <tr><td><em>Trabajé <strong>por</strong> tres horas</em> (I worked for three hours)</td><td><em>Termínalo <strong>para</strong> el viernes</em> (Finish it by Friday)</td></tr>
+              <tr><td><em>Fue escrito <strong>por</strong> Cervantes</em> (It was written by Cervantes)</td><td><em><strong>Para</strong> mí, es fácil</em> (For me, it's easy)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="subsection">
+          <div class="subsection-title">Personal <em>a</em></div>
+          <p>When the direct object of a verb is a specific person (or personified animal/thing), Spanish requires <strong>a</strong> before it:</p>
+          <div class="example">
+            <div class="es"><em>Veo <strong>a</strong> María</em> — I see María &nbsp;(but: <em>Veo la casa</em> — I see the house)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ES: VIII. CONJUNCTIONS -->
+<div class="section" id="es-conjunctions">
+  <div class="section-header">
+    <div class="section-num">VIII</div>
+    <div><div class="section-title">Conjunctions</div><div class="section-title-es">...y para aprenderlo todo... — ...and to learn it all...</div></div>
+  </div>
+  <div class="content">
+    <div class="cols-2">
+      <div class="subsection">
+        <div class="subsection-title">Coordinating</div>
+        <table class="compact">
+          <thead><tr><th>Spanish</th><th>English</th><th>Note</th></tr></thead>
+          <tbody>
+            <tr><td><strong>y</strong> (e before i-/hi-)</td><td>and</td><td><em>padres <strong>e</strong> hijos</em></td></tr>
+            <tr><td><strong>o</strong> (u before o-/ho-)</td><td>or</td><td><em>siete <strong>u</strong> ocho</em></td></tr>
+            <tr><td><strong>pero</strong></td><td>but</td><td></td></tr>
+            <tr><td><strong>sino</strong></td><td>but rather (after negative)</td><td><em>No es rojo, <strong>sino</strong> azul</em></td></tr>
+            <tr><td><strong>ni...ni</strong></td><td>neither...nor</td><td><em><strong>Ni</strong> café <strong>ni</strong> té</em></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">Subordinating</div>
+        <table class="compact">
+          <thead><tr><th>Spanish</th><th>English</th><th>Triggers Subjunctive?</th></tr></thead>
+          <tbody>
+            <tr><td><strong>que</strong></td><td>that</td><td>Often (after doubt, emotion, desire)</td></tr>
+            <tr><td><strong>porque</strong></td><td>because</td><td>No</td></tr>
+            <tr><td><strong>cuando</strong></td><td>when</td><td>Yes (future reference)</td></tr>
+            <tr><td><strong>aunque</strong></td><td>although/even if</td><td>Yes (if hypothetical)</td></tr>
+            <tr><td><strong>si</strong></td><td>if</td><td>Never (uses impf. subjunctive instead)</td></tr>
+            <tr><td><strong>para que</strong></td><td>so that</td><td>Always</td></tr>
+            <tr><td><strong>antes de que</strong></td><td>before</td><td>Always</td></tr>
+            <tr><td><strong>mientras</strong></td><td>while</td><td>Sometimes</td></tr>
+            <tr><td><strong>como si</strong></td><td>as if</td><td>Always (impf. subjunctive)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Compound / Two-Part Conjunctions</div>
+      <table class="compact">
+        <thead><tr><th>Spanish</th><th>English</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td><strong>o...o</strong></td><td>either...or</td><td><em>O vienes o te quedas</em></td></tr>
+          <tr><td><strong>ni...ni</strong></td><td>neither...nor</td><td><em>No come ni carne ni pescado</em></td></tr>
+          <tr><td><strong>no solo...sino también</strong></td><td>not only...but also</td><td><em>No solo es cruel, sino también ilegal</em></td></tr>
+          <tr><td><strong>tanto...como</strong></td><td>both...and / as much...as</td><td><em>Tanto el español como el francés son difíciles</em></td></tr>
+          <tr><td><strong>ya...ya</strong></td><td>whether...or</td><td><em>Ya llueva, ya haga sol, vamos</em></td></tr>
+          <tr><td><strong>cuanto más...más</strong></td><td>the more...the more</td><td><em>Cuanto más estudio, más aprendo</em></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ES: IX. ADVERBS -->
+<div class="section" id="es-adverbs">
+  <div class="section-header">
+    <div class="section-num">IX</div>
+    <div><div class="section-title">Adverbs</div><div class="section-title-es">...deberíamos empezar hoy, y después practicar a diario!</div></div>
+  </div>
+  <div class="content">
+    <p>Spanish adverbs are invariable (they don't change form). Many are formed by adding <strong>-mente</strong> to the feminine singular form of an adjective: <em>rápida → rápidamente</em>, <em>fácil → fácilmente</em>.</p>
+
+    <div class="cols-3">
+      <div class="subsection">
+        <div class="subsection-title">Time</div>
+        <table class="compact">
+          <tbody>
+            <tr><td>ayer / hoy / mañana</td><td>yesterday / today / tomorrow</td></tr>
+            <tr><td>ahora / entonces / luego</td><td>now / then / later</td></tr>
+            <tr><td>siempre / nunca / jamás</td><td>always / never / never (emphatic)</td></tr>
+            <tr><td>ya / todavía / aún</td><td>already / still / yet</td></tr>
+            <tr><td>pronto / tarde / temprano</td><td>soon / late / early</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">Manner</div>
+        <table class="compact">
+          <tbody>
+            <tr><td>bien / mal</td><td>well / badly</td></tr>
+            <tr><td>rápido / despacio</td><td>quickly / slowly</td></tr>
+            <tr><td>así / juntos</td><td>like this / together</td></tr>
+            <tr><td>mejor / peor</td><td>better / worse</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">Place</div>
+        <table class="compact">
+          <tbody>
+            <tr><td>aquí / ahí / allí</td><td>here / there / over there</td></tr>
+            <tr><td>arriba / abajo</td><td>above / below</td></tr>
+            <tr><td>dentro / fuera</td><td>inside / outside</td></tr>
+            <tr><td>cerca / lejos</td><td>near / far</td></tr>
+            <tr><td>delante / detrás</td><td>in front / behind</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Quantity &amp; Degree</div>
+      <p>muy (very), mucho (a lot), poco (a little), bastante (enough/quite), demasiado (too much), tan (so), más (more), menos (less), casi (almost), nada (not at all).</p>
+      <p class="note">When two -mente adverbs appear together, only the last keeps the suffix: <em>Lo hizo lenta <strong>y</strong> cuidadosa<strong>mente</strong></em> (He did it slowly and carefully).</p>
+    </div>
+  </div>
+</div>
+
+<!-- ES: WORD ORDER -->
+<div class="section" id="es-word-order">
+  <div class="section-header"><div class="section-title">Word Order</div></div>
+  <div class="content">
+    <p>Spanish word order is more flexible than English, but the default is <strong>Subject + Verb + Object (SVO)</strong>. Key differences from English:</p>
+    <ul class="rule-list">
+      <li><span class="num">1.</span><strong>Subject pronouns are often omitted</strong> because verb endings already indicate the person: <em>Hablo español</em> (I speak Spanish).</li>
+      <li><span class="num">2.</span><strong>Adjectives usually follow nouns:</strong> <em>un coche rojo</em> (a red car), not *un rojo coche.</li>
+      <li><span class="num">3.</span><strong>Object pronouns precede the conjugated verb:</strong> <em>Lo veo</em> (I see it), but attach to infinitives/gerunds/commands: <em>Quiero verlo</em>.</li>
+      <li><span class="num">4.</span><strong>Questions:</strong> Invert subject and verb, or simply add ¿? marks around a statement with rising intonation: <em>¿Hablas español?</em> or <em>¿Tú hablas español?</em></li>
+      <li><span class="num">5.</span><strong>Negation:</strong> Place <em>no</em> directly before the verb (and any object pronouns): <em>No lo sé</em> (I don't know it). Double negatives are standard: <em>No sé <strong>nada</strong></em> (I don't know anything).</li>
+      <li><span class="num">6.</span><strong>Adverbs</strong> generally follow the verb they modify, or come at the start/end of the sentence for emphasis.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ES: PASSIVE & SE -->
+<div class="section" id="es-passive">
+  <div class="section-header"><div class="section-title">Passive Voice &amp; <em>Se</em> Constructions</div></div>
+  <div class="content">
+    <div class="subsection">
+      <div class="subsection-title">True Passive (ser + past participle)</div>
+      <p>Less common in everyday Spanish than in English. The past participle agrees in gender and number with the subject.</p>
+      <div class="example">
+        <div class="es"><strong>Active:</strong> Cervantes escribió el libro → <strong>Passive:</strong> El libro fue escrito por Cervantes</div>
+        <div class="en">Cervantes wrote the book → The book was written by Cervantes</div>
+      </div>
+    </div>
+    <div class="subsection">
+      <div class="subsection-title">Passive <em>se</em> (much more common)</div>
+      <p>Used when the agent (doer) is unknown or unimportant. The verb agrees with the grammatical subject.</p>
+      <div class="example">
+        <div class="es"><em>Aquí <strong>se habla</strong> español</em> — Spanish is spoken here</div>
+        <div class="es"><em><strong>Se venden</strong> pisos</em> — Apartments for sale (lit. "apartments are sold")</div>
+      </div>
+    </div>
+    <div class="subsection">
+      <div class="subsection-title">Impersonal <em>se</em></div>
+      <p>Used for general statements (like "one" or "people" in English). Always 3rd person singular.</p>
+      <div class="example">
+        <div class="es"><em><strong>Se</strong> puede aparcar aquí</em> — One can park here / You can park here</div>
+        <div class="es"><em><strong>Se</strong> dice que...</em> — It is said that... / They say that...</div>
+      </div>
+    </div>
+    <div class="subsection">
+      <div class="subsection-title">Resultant State (estar + past participle)</div>
+      <p>Describes the result of a completed action (not the action itself).</p>
+      <div class="example">
+        <div class="es"><em>La puerta <strong>está cerrada</strong></em> — The door is closed (result) vs. <em>La puerta <strong>fue cerrada</strong></em> — The door was closed (action)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ES: SUBJUNCTIVE -->
+<div class="section" id="es-subjunctive">
+  <div class="section-header"><div class="section-title">The Subjunctive Mood</div></div>
+  <div class="content">
+    <p>The subjunctive is one of the most challenging aspects of Spanish. It expresses doubt, desire, emotion, hypothetical situations, and subjective reactions — rather than facts.</p>
+
+    <div class="subsection">
+      <div class="subsection-title">Present Subjunctive — Regular Endings</div>
+      <p>Formed by "swapping" the characteristic vowel: -AR verbs take -e endings; -ER/-IR verbs take -a endings.</p>
+      <table>
+        <thead><tr><th></th><th>-AR (hablar)</th><th>-ER (comer)</th><th>-IR (vivir)</th></tr></thead>
+        <tbody>
+          <tr><td><strong>yo</strong></td><td>hable</td><td>coma</td><td>viva</td></tr>
+          <tr><td><strong>tú</strong></td><td>hables</td><td>comas</td><td>vivas</td></tr>
+          <tr><td><strong>él/ella/Ud.</strong></td><td>hable</td><td>coma</td><td>viva</td></tr>
+          <tr><td><strong>nosotros</strong></td><td>hablemos</td><td>comamos</td><td>vivamos</td></tr>
+          <tr><td><strong>vosotros</strong></td><td>habléis</td><td>comáis</td><td>viváis</td></tr>
+          <tr><td><strong>ellos/Uds.</strong></td><td>hablen</td><td>coman</td><td>vivan</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">When to Use the Subjunctive — WEIRDO</div>
+      <table>
+        <thead><tr><th>Letter</th><th>Category</th><th>Triggers</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td><strong>W</strong></td><td>Wishes &amp; Desires</td><td>querer, desear, esperar, preferir, ojalá</td><td><em>Quiero que <strong>vengas</strong></em> (I want you to come)</td></tr>
+          <tr><td><strong>E</strong></td><td>Emotions</td><td>alegrarse, temer, sorprender, gustar, molestar</td><td><em>Me alegra que <strong>estés</strong> aquí</em> (I'm glad you're here)</td></tr>
+          <tr><td><strong>I</strong></td><td>Impersonal Expressions</td><td>es importante, es posible, es necesario, es mejor</td><td><em>Es necesario que <strong>estudies</strong></em> (It's necessary that you study)</td></tr>
+          <tr><td><strong>R</strong></td><td>Recommendations &amp; Requests</td><td>recomendar, sugerir, pedir, aconsejar, insistir, mandar</td><td><em>Te sugiero que <strong>vayas</strong></em> (I suggest you go)</td></tr>
+          <tr><td><strong>D</strong></td><td>Doubt &amp; Denial</td><td>dudar, negar, no creer, no pensar, no estar seguro</td><td><em>Dudo que <strong>sepa</strong> la respuesta</em> (I doubt he knows the answer)</td></tr>
+          <tr><td><strong>O</strong></td><td>Ojalá ("if only")</td><td>ojalá (que)</td><td><em>Ojalá que <strong>llueva</strong></em> (I hope it rains)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Imperfect Subjunctive</div>
+      <p>Two forms exist (-ra and -se); -ra is far more common. Formed from the 3rd person plural preterite stem.</p>
+      <table class="compact">
+        <thead><tr><th></th><th>-AR (hablar → hablaron)</th><th>-ER (comer → comieron)</th><th>-IR (vivir → vivieron)</th></tr></thead>
+        <tbody>
+          <tr><td><strong>yo</strong></td><td>hablara / hablase</td><td>comiera / comiese</td><td>viviera / viviese</td></tr>
+          <tr><td><strong>tú</strong></td><td>hablaras</td><td>comieras</td><td>vivieras</td></tr>
+          <tr><td><strong>él</strong></td><td>hablara</td><td>comiera</td><td>viviera</td></tr>
+          <tr><td><strong>nosotros</strong></td><td>habláramos</td><td>comiéramos</td><td>viviéramos</td></tr>
+          <tr><td><strong>ellos</strong></td><td>hablaran</td><td>comieran</td><td>vivieran</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">If-Clauses (Conditional Sentences)</div>
+      <table>
+        <thead><tr><th>Type</th><th>If Clause</th><th>Result Clause</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Real / Likely</strong> (present)</td><td>Si + present indicative</td><td>Present / Future / Command</td><td><em>Si llueve, me quedo en casa</em></td></tr>
+          <tr><td><strong>Hypothetical</strong> (present)</td><td>Si + imperfect subjunctive</td><td>Conditional</td><td><em>Si tuviera dinero, viajaría</em></td></tr>
+          <tr><td><strong>Contrary to fact</strong> (past)</td><td>Si + pluperfect subjunctive</td><td>Conditional perfect</td><td><em>Si hubiera sabido, habría ido</em></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Imperative (Commands)</div>
+      <table>
+        <thead><tr><th></th><th>-AR (hablar)</th><th>-ER (comer)</th><th>-IR (vivir)</th></tr></thead>
+        <tbody>
+          <tr><td><strong>tú</strong> (affirm.)</td><td>¡Habla!</td><td>¡Come!</td><td>¡Vive!</td></tr>
+          <tr><td><strong>tú</strong> (neg.)</td><td>¡No hables!</td><td>¡No comas!</td><td>¡No vivas!</td></tr>
+          <tr><td><strong>Ud.</strong></td><td>¡Hable!</td><td>¡Coma!</td><td>¡Viva!</td></tr>
+          <tr><td><strong>nosotros</strong></td><td>¡Hablemos!</td><td>¡Comamos!</td><td>¡Vivamos!</td></tr>
+          <tr><td><strong>vosotros</strong> (affirm.)</td><td>¡Hablad!</td><td>¡Comed!</td><td>¡Vivid!</td></tr>
+          <tr><td><strong>vosotros</strong> (neg.)</td><td>¡No habléis!</td><td>¡No comáis!</td><td>¡No viváis!</td></tr>
+          <tr><td><strong>Uds.</strong></td><td>¡Hablen!</td><td>¡Coman!</td><td>¡Vivan!</td></tr>
+        </tbody>
+      </table>
+      <p class="note"><strong>Irregular tú affirmative:</strong> di (decir), haz (hacer), ve (ir), pon (poner), sal (salir), sé (ser), ten (tener), ven (venir). All negative commands and all Ud./Uds. commands use the subjunctive.</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /main es -->
+</div><!-- /tab-es -->
+
+</div><!-- /tab-content-wrapper -->
+
+<div class="footer">
+  <p>AO1W &mdash; All On One Wall &mdash; Grammar Reference for English Speakers</p>
+  <p>German &amp; Spanish &middot; Corrected &amp; rewritten edition</p>
+</div>
+
+<script>
+function switchTab(lang) {
+  document.querySelectorAll('.lang-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelector('.lang-tab.' + lang).classList.add('active');
+  document.getElementById('tab-' + lang).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
